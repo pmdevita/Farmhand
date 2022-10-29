@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://8hcnoulk1kvc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6mlpn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4810q"]
+
+[node name="Enemy" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6mlpn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4810q")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="IdleState" type="Node3D" parent="Node3D"]
+
+[node name="PatrolState" type="Node3D" parent="Node3D"]
+
+[node name="AlertState" type="Node3D" parent="Node3D"]
+
+[node name="PlayerFoundState" type="Node3D" parent="Node3D"]
+
+[node name="MAttackState" type="Node3D" parent="Node3D"]
+
+[node name="ChaseState" type="Node3D" parent="Node3D"]
+
+[node name="DieState" type="Node3D" parent="Node3D"]
