@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://eo374mhhphjc"]
+
+[ext_resource type="Script" path="res://PlayerController.gd" id="1_b0d84"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csb8k"]
+albedo_color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y3s8d"]
+material = SubResource("StandardMaterial3D_csb8k")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bahcr"]
+size = Vector3(6.13582, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq30l"]
+albedo_color = Color(0.0117647, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jtg3o"]
+material = SubResource("StandardMaterial3D_oq30l")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rpm5q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v87xu"]
+
+[sub_resource type="Sky" id="Sky_fxy1m"]
+sky_material = SubResource("ProceduralSkyMaterial_v87xu")
+
+[sub_resource type="Environment" id="Environment_upkab"]
+background_mode = 2
+sky = SubResource("Sky_fxy1m")
+fog_light_color = Color(0.807843, 0.807843, 0.807843, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(3.82516, 0, 0, 0, 3.82516, 0, 0, 0, 3.82516, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_y3s8d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.344631, 0, 0, 0, 0.344631, 0, 0, 0, 2.08855, 0, -0.174062, 0)
+shape = SubResource("BoxShape3D_bahcr")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453021, 0)
+script = ExtResource("1_b0d84")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.209997, 0)
+mesh = SubResource("CapsuleMesh_jtg3o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.209997, 0)
+shape = SubResource("CapsuleShape3D_rpm5q")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.885491, 0.464657, 0, -0.464657, 0.885491, -0.585904, 1.57201, 2.91904)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.916328, 0.400429, 0, -0.400429, 0.916328, -0.0044322, 2.73552, 3.08728)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_upkab")
