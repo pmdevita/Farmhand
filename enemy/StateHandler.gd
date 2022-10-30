@@ -1,12 +1,12 @@
-extends Node3D
+extends Node
 
 const State = preload("res://enemy/State.gd")
 
 signal transitioned(state_name)
 
-@export var initial_state := NodePath()
+export var initial_state := NodePath()
 
-@onready var state := get_node(initial_state)
+onready var state := get_node(initial_state)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _ready() -> void:
 	#state = get_node(initial_state)
 	print(state)
 	
-	await owner
+	yield(owner, "ready")
 	
 	for child in get_children():
 		child.state_machine = self

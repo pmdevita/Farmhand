@@ -1,8 +1,8 @@
 extends "res://enemy/State.gd"
 
-@export var idle_timer = 4;
+export var idle_timer = 4;
 
-@onready var timer:Timer = $IdleTimer
+onready var timer:Timer = $IdleTimer
 
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:

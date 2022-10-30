@@ -1,7 +1,5 @@
 extends "res://enemy/State.gd"
 
-@export var patrol_timer = 3;
-
 var destination = 0;
 var increment_walk = 0.01;
 

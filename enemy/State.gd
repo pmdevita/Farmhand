@@ -1,5 +1,5 @@
 # Virtual base class for all states to derive from
-extends Node3D
+extends Node
 
 var state_machine = null
 
