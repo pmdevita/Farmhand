@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://eo374mhhphjc"]
+[gd_scene load_steps=12 format=3 uid="uid://csmesni38747t"]
 
 [ext_resource type="Script" path="res://PlayerController.gd" id="1_b0d84"]
+[ext_resource type="PackedScene" uid="uid://c8jwts22qg84f" path="res://enemy/enemy.tscn" id="2_2pk8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30meu"]
 
@@ -130,5 +131,10 @@ transform = Transform3D(-1.56497, -1.6851e-07, -4.81162e-07, 0, 5.50385, -1.9275
 [node name="MeshInstance3D" type="MeshInstance3D" parent="3D Meshes/Ramp4"]
 mesh = SubResource("BoxMesh_0naff")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3D Meshes/Ramp4"]
-shape = SubResource("BoxShape3D_7lkg5")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_upkab")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("2_2pk8q")]
+transform = Transform3D(0.504, 0, 0, 0, 0.504, 0, 0, 0, 0.504, 0, 0.5, -3)
