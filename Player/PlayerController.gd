@@ -308,7 +308,7 @@ func _process(delta):
 			
 			$AudioStreamPlayer3D.pitch_scale = rand_range(0.8, 1.2)
 			$AudioStreamPlayer3D.play()
-			footstepTimer.start(0.2 * (sprintSpeed / 15))
+			footstepTimer.start(0.2 * (sprintSpeed / 25))
 			
 		if (stamina > 0):
 			stamina -= loseStaminaSprint
@@ -317,10 +317,10 @@ func _process(delta):
 	elif (sneaking):
 		stopFootSteps = false
 		camera.fov = lerp(camera.fov, sneakFOV, fovChangeRate)
-		if footstepTimer.time_left <= 0:
+		if (footstepTimer.time_left <= 0 and moving):
 			$AudioStreamPlayer3D.pitch_scale = rand_range(0.8, 1.2)
 			$AudioStreamPlayer3D.play()
-			footstepTimer.start(0.75 * (sneakSpeed / 15))
+			footstepTimer.start(0.75 * (sneakSpeed / 4))
 		if (stamina < 100):
 			stamina += recoverStaminaSneaking
 		else:
@@ -331,7 +331,7 @@ func _process(delta):
 		if footstepTimer.time_left <= 0:
 			$AudioStreamPlayer3D.pitch_scale = rand_range(0.8, 1.2)
 			$AudioStreamPlayer3D.play()
-			footstepTimer.start(0.5 * (walkSpeed / 20))
+			footstepTimer.start(0.5 * (walkSpeed / 15))
 		if (stamina < 100):
 			stamina += recoverStaminaWalking
 		else:
