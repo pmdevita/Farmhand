@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Farmhand"
-run/main_scene="res://playertest.tscn"
+run/main_scene="res://main scenes/Level1.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
