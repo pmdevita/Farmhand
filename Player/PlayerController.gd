@@ -105,6 +105,7 @@ func _physics_process(delta):
 	
 	# Collect player movement input
 	groundVelocity = Input.get_vector("Left", "Right", "Forward", "Backward")
+	# print(groundVelocity)
 	
 	# Player has regained enough stamina and may sprint again
 	if (stamina > staminaDelay):
@@ -199,6 +200,7 @@ func _physics_process(delta):
 		moving = false
 	
 	# Call the function to actually move the player
+	print(transform.origin)
 	move_and_slide(velocity)
 
 	# Lock mouse cursor if user clicks on screen
