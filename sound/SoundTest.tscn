@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sound/assets/Rural.ogg" type="AudioStream" id=1]
+[ext_resource path="res://sound/soundmanager.gd" type="Script" id=2]
+[ext_resource path="res://sound/ambienttimer.gd" type="Script" id=3]
+[ext_resource path="res://sound/AudioEnemyStateManager.gd" type="Script" id=4]
+[ext_resource path="res://sound/AlertState.gd" type="Script" id=5]
+[ext_resource path="res://sound/assets/Enemy Alert.ogg" type="AudioStream" id=6]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="SoundManager" type="Spatial" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+GuitarMusic = NodePath("GuitarMusic")
+GuitarTimerPath = NodePath("AmbienceTimer")
+
+[node name="GuitarMusic" type="Spatial" parent="SoundManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager/GuitarMusic"]
+stream = ExtResource( 1 )
+bus = "GuitarMusic"
+
+[node name="AmbienceTimer" type="Timer" parent="SoundManager"]
+one_shot = true
+script = ExtResource( 3 )
+minSeconds = 2
+maxSeconds = 5
+
+[node name="AlertMusic" type="AudioStreamPlayer" parent="SoundManager"]
+
+[node name="EnemyState" type="Spatial" parent="SoundManager"]
+script = ExtResource( 4 )
+
+[node name="AlertState" type="AudioStreamPlayer" parent="SoundManager/EnemyState"]
+stream = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="AttackState" type="AudioStreamPlayer" parent="SoundManager/EnemyState"]
+
+[node name="Normal" type="AudioStreamPlayer" parent="SoundManager/EnemyState"]
+
+[connection signal="timeout" from="SoundManager/AmbienceTimer" to="SoundManager" method="play_ambience"]

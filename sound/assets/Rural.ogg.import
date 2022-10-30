@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rural.ogg-80dfd28344e0bb8896fbe8cd1603c325.oggstr"
+
+[deps]
+
+source_file="res://sound/assets/Rural.ogg"
+dest_files=[ "res://.import/Rural.ogg-80dfd28344e0bb8896fbe8cd1603c325.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
