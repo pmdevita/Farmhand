@@ -166,6 +166,7 @@ func _physics_process(delta):
 	
 	# Collect player movement input
 	groundVelocity = Input.get_vector("Left", "Right", "Forward", "Backward")
+	# print(groundVelocity)
 	
 	# Player has regained enough stamina and may sprint again
 	if (stamina > staminaDelay):

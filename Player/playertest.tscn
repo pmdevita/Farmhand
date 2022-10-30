@@ -41,6 +41,17 @@ mesh = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.036, 0 )
 shape = SubResource( 3 )
 
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 31.022, -0.379375, 0, 12.7199, 0.925243, 0, 0, 0, 33.5285, 29.3389, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+transform = Transform( 0.964024, 0.00792783, 0, -8.91215, 0.964025, 0, 0, 0, 0.999998, 0.430702, -3.13077, 0 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+shape = SubResource( 3 )
+
 [node name="Cube" type="StaticBody" parent="."]
 transform = Transform( 3.08409, 0, 0, 0, 1, 0, 0, 0, 3.08409, 0, 0.631509, -14.5573 )
 
@@ -52,3 +63,4 @@ shape = SubResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 7 )
+
