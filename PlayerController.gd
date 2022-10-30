@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends KinematicBody
 # TODO: Sneak adjusts camera and player collider height
 # TODO: Stamina BAR or VISUAL/AUDIO cue? Make jump affect stamina?
 # TODO: Speed adjustments and any smoothing/bugfixes with sprint/sneak speeds
@@ -18,35 +18,35 @@ extends CharacterBody3D
 # Anything else? Bugtesting/level playtesting. Add features as necessary
 
 # Reference to player camera object used for rotations/Mouselook
-@onready var camera:Camera3D = $PlayerCamera
+onready var camera:Camera = $PlayerCamera
 # How sensitive the first person camera is for Mouselook
-@export var mouseSensitivity = 0.5
+export var mouseSensitivity = 0.5
 # How high and low the player is able to look
-@export var lookLimitUp = 1
-@export var lookLimitDown = -1
+export var lookLimitUp = 1
+export var lookLimitDown = -1
 
 # Player's sneak speed (m/s)
-@export var sneakSpeed = 7.0
+export var sneakSpeed = 7.0
 # Player's walk speed (m/s)
-@export var walkSpeed = 14.0
+export var walkSpeed = 14.0
 # Player's sprint speed (m/s)
-@export var sprintSpeed = 28.0
+export var sprintSpeed = 28.0
 # Determines how fast the player can move between sprint/walk/sneak
-@export var changeStateSpeed = 0.01
+export var changeStateSpeed = 0.01
 # Holds the current player speed.
 var currentSpeed = walkSpeed
 
 # If the player runs out of stamina, recharge to this level before sprinting again
-@export var staminaDelay = 30.0
+export var staminaDelay = 30.0
 var ranOutOfSprint = false
 # Rate at which stamina is recovered while standing still
-@export var recoverStaminaIdle = 3.0
+export var recoverStaminaIdle = 3.0
 # Rate at which stamina is recovered while sneaking
-@export var recoverStaminaSneaking = 2.0
+export var recoverStaminaSneaking = 2.0
 # Rate at which stamina is recovered while walking
-@export var recoverStaminaWalking = 1.5
+export var recoverStaminaWalking = 1.5
 # Rate at which stamina is lost while sprinting
-@export var loseStaminaSprint = 4.0
+export var loseStaminaSprint = 4.0
 # How much stamina is lost from a jump
 # @export var loseStaminaJump = 25.0 <-- Not implemented; unnecessary?
 
@@ -62,26 +62,26 @@ var moving = false
 var jumpTimerStarted = false
 
 # Enables/disables player sneak/sprint
-@export var canSneak = true
-@export var canSprint = true
+export var canSneak = true
+export var canSprint = true
 
 # Used to allow player to even jump at all, or when delaying jumps
-@export var canJump = true
+export var canJump = true
 # Whether or not the player can mini-jump while sneaking
-@export var canSneakJump = true
+export var canSneakJump = true
 # Whether or not the player can spam-jump
-@export var canBunnyhop = false
+export var canBunnyhop = false
 # How long in seconds the player must wait before jumping
-@export var jumpDelay = 1.5;
+export var jumpDelay = 1.5;
 # Reference to timer for jump-delays
-@onready var timer:Timer = $JumpTimer
+onready var timer:Timer = $JumpTimer
 
 # How high the player jumps normally
-@export var normalJumpStrength = 20
+export var normalJumpStrength = 20
 # How high the player jumps while sneaking
-@export var sneakJumpStrength = 10
+export var sneakJumpStrength = 10
 # Player's falling speed (m/s)
-@export var playerGravity = 75
+export var playerGravity = 75
 # Player's Y velocity (for jumping/falling)
 var playerVelocityY = 0
 
@@ -153,7 +153,7 @@ func _physics_process(delta):
 	groundVelocity = groundVelocity.normalized() * currentSpeed
 	
 	# Update player velocity on ground based on current direction
-	velocity = groundVelocity.x * global_transform.basis.x + groundVelocity.y * global_transform.basis.z
+	var velocity = groundVelocity.x * global_transform.basis.x + groundVelocity.y * global_transform.basis.z
 	
 	# Decide whether to apply gravity or a jump to player
 	if is_on_floor():
@@ -199,10 +199,10 @@ func _physics_process(delta):
 		moving = false
 	
 	# Call the function to actually move the player
-	move_and_slide()
+	move_and_slide(velocity)
 
 	# Lock mouse cursor if user clicks on screen
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_action_just_pressed("mouse 1"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# Unlock cursor if user presses escape
