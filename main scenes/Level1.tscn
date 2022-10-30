@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player/playercontroller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/Level1Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sound/SoundManager.tscn" type="PackedScene" id=3]
 
 [node name="Spatial" type="Spatial"]
 
@@ -10,5 +9,3 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.6449, 149.011 )
 
 [node name="Level1" parent="." instance=ExtResource( 2 )]
-
-[node name="SoundManager" parent="." instance=ExtResource( 3 )]
