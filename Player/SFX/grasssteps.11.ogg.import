@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/grasssteps.11.ogg-b92d0778eca1717013c39eda04b72f5e.oggstr"
+
+[deps]
+
+source_file="res://Player/SFX/grasssteps.11.ogg"
+dest_files=[ "res://.import/grasssteps.11.ogg-b92d0778eca1717013c39eda04b72f5e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
