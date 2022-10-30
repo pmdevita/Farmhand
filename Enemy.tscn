@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://enemy/EnemyStates/PatrolState.gd" type="Script" id=1]
+[ext_resource path="res://enemy/EnemyStates/IdleState.gd" type="Script" id=2]
+[ext_resource path="res://enemy/EnemyStates/AlertState.gd" type="Script" id=3]
+[ext_resource path="res://enemy/EnemyStates/MAttackState.gd" type="Script" id=4]
+[ext_resource path="res://enemy/EnemyStates/DieState.gd" type="Script" id=5]
+[ext_resource path="res://enemy/EnemyStates/ChaseState.gd" type="Script" id=6]
+[ext_resource path="res://enemy/EnemyStates/PlayerFoundState.gd" type="Script" id=7]
+[ext_resource path="res://enemy/StateHandler.gd" type="Script" id=8]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CapsuleMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="CapsuleShape" id=3]
+
+[node name="Enemy" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="StateHandler" type="Spatial" parent="."]
+script = ExtResource( 8 )
+nav_agent = NodePath("../NavigationAgent")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 2 )
+
+[node name="IdleTimer" type="Timer" parent="StateHandler/IdleState"]
+one_shot = true
+
+[node name="PatrolState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 1 )
+
+[node name="AlertState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 3 )
+
+[node name="PlayerFoundState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 7 )
+
+[node name="ChaseState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 6 )
+
+[node name="MAttackState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 4 )
+
+[node name="DieState" type="Spatial" parent="StateHandler"]
+script = ExtResource( 5 )
+
+[node name="NavigationAgent" type="NavigationAgent" parent="."]
+
+[node name="ArrayOfPosition3D" type="Spatial" parent="."]
+
+[node name="Pos-1" type="Position3D" parent="ArrayOfPosition3D"]
+
+[node name="Pos-2" type="Position3D" parent="ArrayOfPosition3D"]

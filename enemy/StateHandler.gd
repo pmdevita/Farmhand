@@ -4,19 +4,17 @@ const State = preload("res://enemy/State.gd")
 
 signal transitioned(state_name)
 
+export var nav_agent := NodePath()
+
 export var initial_state := NodePath()
 
 onready var state := get_node(initial_state)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("ajfdsakfhbasdj")
-	if not state:
-		print("Is Empty")
 	
 	#print(initial_state)
 	#state = get_node(initial_state)
-	print(state)
 	
 	yield(owner, "ready")
 	

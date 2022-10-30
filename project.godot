@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "",
-"class": "EnemyState",
-"language": "GDScript",
-"path": "res://EnemyState.gd"
-} ]
-_global_script_class_icons={
-"EnemyState": ""
-}
-
 [application]
 
 config/name="Farmhand"
@@ -61,7 +51,6 @@ Sneak={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
-
 }
 
 [input]

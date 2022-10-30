@@ -1,15 +1,17 @@
 extends "res://enemy/State.gd"
 
-var destination = 0;
-var increment_walk = 0.01;
+var target_point := Node
 
 # Called when the node enters the scene tree for the first time.
 func enter():
 	print("hello from patrol")
-	destination = 1 + destination
+	
+	#for i in targets_array.size():
+	#	print(targets_array[i])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
 	#use navmesh to go to a random point
+	 
 	pass
