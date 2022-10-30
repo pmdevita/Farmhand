@@ -8,7 +8,7 @@ onready var timer:Timer = $IdleTimer
 func enter() -> void:
 	print("Hello from the IdleState")
 	
-	owner.velocity = Vector3(0, 0, 0)
+	#owner.velocity = Vector3.ZERO
 	timer.start(idle_timer)
 	# play some animation or something
 
